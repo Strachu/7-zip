@@ -953,12 +953,12 @@ void CArchiveCommandLineParser::Parse2(CArchiveCommandLineOptions &options)
 
     options.EnablePercents = !parser[NKey::kDisablePercents].ThereIs;
 
-    if (options.EnablePercents)
-    {
-      if ((options.StdOutMode && !options.IsStdErrTerminal) ||
-         (!options.StdOutMode && !options.IsStdOutTerminal))
-        options.EnablePercents = false;
-    }
+    //if (options.EnablePercents)
+    //{
+    //  if ((options.StdOutMode && !options.IsStdErrTerminal) ||
+    //     (!options.StdOutMode && !options.IsStdOutTerminal))
+    //    options.EnablePercents = false;
+    //}
 
     updateOptions.EMailMode = parser[NKey::kEmail].ThereIs;
     if (updateOptions.EMailMode)
