@@ -91,9 +91,15 @@ STDMETHODIMP CExtractCallbackConsole::PrepareOperation(const wchar_t *name, bool
     case NArchive::NExtract::NAskMode::kTest:    (*OutStream) << kTestString; break;
     case NArchive::NExtract::NAskMode::kSkip:    (*OutStream) << kSkipString; break;
   };
-  (*OutStream) << name;
+  (*OutStream) << name << endl;
   if (position != 0)
     (*OutStream) << " <" << *position << ">";
+
+  if(askExtractMode == NArchive::NExtract::NAskMode::kExtract)
+  {
+    OutStream->Flush();
+  }
+
   return S_OK;
 }
 
@@ -130,9 +136,11 @@ STDMETHODIMP CExtractCallbackConsole::SetOperationResult(Int32 operationResult, 
         default:
           (*OutStream) << kUnknownError;
       }
+      (*OutStream) << endl;
     }
   }
-  (*OutStream) << endl;
+
+  OutStream->Flush();
   return S_OK;
 }
 
